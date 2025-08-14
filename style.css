@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 20px;
+}
+
+#search {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#video-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.video-card {
+  text-decoration: none;
+  color: black;
+  width: 200px;
+}
+
+.video-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.video-card p {
+  margin-top: 5px;
+  font-weight: bold;
+}
