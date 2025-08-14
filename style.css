@@ -1,13 +1,12 @@
-/* Background video */
-#bg-video {
+/* Background Video */
+.video-background iframe {
   position: fixed;
   top: 0;
   left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
   z-index: -1;
-  filter: brightness(0.5);
+  border: none;
 }
 
 /* Sidebar */
@@ -54,7 +53,7 @@
 
 /* Main content */
 #content {
-  margin-left: 220px; /* space for sidebar */
+  margin-left: 220px;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -86,14 +85,14 @@ h1 {
   border-color: #ff00ff;
 }
 
-/* Video gallery - YouTube small recommendation style */
+/* Video gallery */
 #video-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 15px;
 }
 
-/* Video card - smaller YouTube style */
+/* Video card */
 .video-card {
   text-decoration: none;
   color: black;
@@ -113,7 +112,7 @@ h1 {
 .video-card img {
   width: 100%;
   display: block;
-  height: 100px; /* smaller height like YouTube */
+  height: 100px;
   object-fit: cover;
   border-bottom: 2px solid #ff00ff;
 }
