@@ -1,7 +1,15 @@
 const gallery = document.getElementById('video-gallery');
 const searchInput = document.getElementById('search');
+const bgImage = document.getElementById('bg-image');
+const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
 
 let historyData = [];
+
+// Toggle Menu
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('hidden');
+});
 
 // Get YouTube video ID
 function getYouTubeID(url) {
@@ -29,6 +37,7 @@ function displayVideos(videos) {
     // Save clicked videos to history
     a.addEventListener('click', () => {
       if (!historyData.includes(video)) historyData.push(video);
+      zoomBackground();
     });
   });
 }
@@ -41,11 +50,13 @@ searchInput.addEventListener('input', () => {
   const filter = searchInput.value.toLowerCase();
   const filtered = videosData.filter(v => v.title.toLowerCase().includes(filter));
   displayVideos(filtered);
+  zoomBackground();
 });
 
 // Sidebar buttons
 document.getElementById('home-btn').addEventListener('click', () => {
   displayVideos(videosData);
+  zoomBackground();
 });
 
 document.getElementById('history-btn').addEventListener('click', () => {
@@ -54,4 +65,13 @@ document.getElementById('history-btn').addEventListener('click', () => {
   } else {
     displayVideos(historyData);
   }
+  zoomBackground();
 });
+
+// Zoom background on action
+function zoomBackground() {
+  bgImage.style.transform = "scale(1.05)";
+  setTimeout(() => {
+    bgImage.style.transform = "scale(1)";
+  }, 500);
+}
