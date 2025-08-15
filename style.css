@@ -1,12 +1,13 @@
-/* Background Video */
-.video-background iframe {
+/* Background Image */
+.background-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: url('YOUR_IMAGE_LINK_HERE') no-repeat center center/cover;
   z-index: -1;
-  border: none;
+  filter: brightness(0.5);
 }
 
 /* Sidebar */
@@ -16,7 +17,7 @@
   top: 0;
   width: 200px;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.7);
   border-right: 4px solid #ff00ff;
   display: flex;
   flex-direction: column;
@@ -58,6 +59,7 @@
   z-index: 1;
   text-align: center;
   padding: 30px;
+  color: #fff;
 }
 
 /* Heading */
@@ -65,7 +67,7 @@ h1 {
   font-size: 3em;
   margin-bottom: 25px;
   color: #ff00ff;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
 /* Search bar */
@@ -78,6 +80,7 @@ h1 {
   transition: all 0.3s;
   font-size: 1em;
   margin-bottom: 30px;
+  background: rgba(255,255,255,0.7);
 }
 
 #search:focus {
@@ -96,7 +99,7 @@ h1 {
 .video-card {
   text-decoration: none;
   color: black;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.85);
   border-radius: 8px;
   border: 3px solid #ff00ff;
   overflow: hidden;
@@ -109,10 +112,10 @@ h1 {
   border-color: #ff66ff;
 }
 
+/* 16:9 Thumbnail */
 .video-card img {
   width: 100%;
-  display: block;
-  height: 100px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-bottom: 2px solid #ff00ff;
 }
