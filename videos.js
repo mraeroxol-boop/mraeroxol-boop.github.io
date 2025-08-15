@@ -8,5 +8,24 @@ const videosData = [
     title: "new gfx pack",
     url: "https://youtu.be/onSPV5l3hqU?si=hekSO1f4jrwOEO8v"
   },
-  // Add more videos here
+  {
+    title: "foltyn video",
+    url: "https://youtu.be/nxNlkAhZIfI?si=fNDdDrK2ZP06TX6D"
+  },
+  {
+    title: "proboiz video",
+    url: "https://youtu.be/TVw18eAj5s0?si=0lqeTwcyP9UZqLR0"
+  },
+  {
+    title: "flamingo video",
+    url: "https://youtu.be/FbCF_H4ZD64?si=9303pQ2buycawGmp"
+  },
+  {
+    title: "notch on minecraft",
+    url: "https://youtu.be/UOF_7hSWSJg?si=a1kiR2RBMDGVNgZu"
+  },
+  {
+    title: "youtube ads in 2050 be like",
+    url: "https://youtu.be/TRZumROFVDE?si=jNXWm2JmdTCNuq8p"
+  },
 ];
