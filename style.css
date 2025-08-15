@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('YOUR_IMAGE_LINK_HERE') no-repeat center center/cover;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtSkLpmemPCk-5ynyGRd2M7VYCblgh_B37TA&s') no-repeat center center/cover;
   z-index: -1;
   filter: brightness(0.5);
 }
