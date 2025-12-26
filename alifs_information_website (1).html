@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alif's Information</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #666666;
+      --border: rgba(0,0,0,0.08);
+      --shadow-xl: 0 40px 90px rgba(0,0,0,0.12);
+      --shadow-lg: 0 30px 60px rgba(0,0,0,0.10);
+      --shadow-md: 0 18px 36px rgba(0,0,0,0.08);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ================= Loader ================= */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 0.8s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .loader span {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      letter-spacing: 0.18em;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* ================= Entrance ================= */
+    .page {
+      opacity: 0;
+      transform: translateY(120px);
+      animation: rise 1.4s cubic-bezier(.22,1,.36,1) forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ================= Background Luxury Effects ================= */
+    .orb {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(0,0,0,0.07), transparent 60%);
+      filter: blur(60px);
+      z-index: -1;
+      animation: float 22s ease-in-out infinite alternate;
+    }
+
+    .orb.one { top: -200px; left: -200px; }
+    .orb.two { bottom: -200px; right: -200px; animation-delay: 6s; }
+
+    @keyframes float {
+      from { transform: translate(0,0); }
+      to { transform: translate(80px,120px); }
+    }
+
+    /* ================= Layout ================= */
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 80px 28px 140px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 90px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(44px, 6vw, 68px);
+      margin-bottom: 14px;
+    }
+
+    header p {
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ================= GIF Areas ================= */
+    .gif-top { margin-bottom: 80px; }
+    .gif-bottom { margin-top: 100px; }
+
+    .side-gif {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 160px;
+      opacity: 0.9;
+    }
+
+    .side-gif.left { left: 20px; }
+    .side-gif.right { right: 20px; }
+
+    /* ================= Grid ================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    /* ================= Cards ================= */
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 52px 48px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(0,0,0,0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .info div {
+      font-size: 15px;
+      line-height: 2.1;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .info div:last-child { border-bottom: none; }
+
+    /* ================= Links ================= */
+    a {
+      color: blue;
+      text-decoration: none;
+      position: relative;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background: blue;
+      transition: width 0.35s ease;
+    }
+
+    a:hover::after { width: 100%; }
+
+    /* ================= Footer ================= */
+    footer {
+      margin-top: 120px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+  
+    /* ================= Ultra Luxury Effects ================= */
+
+    /* Parallax Sections */
+    .parallax {
+      position: relative;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 1s cubic-bezier(.22,1,.36,1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Cinematic Transitions */
+    .cinematic {
+      transition: transform 1.2s ease, opacity 1.2s ease;
+    }
+
+    /* Frosted Glass On Scroll */
+    .frosted {
+      backdrop-filter: blur(14px) saturate(120%);
+      background: rgba(255,255,255,0.82);
+    }
+
+    /* Premium Divider */
+    .lux-divider {
+      height: 1px;
+      width: 160px;
+      margin: 80px auto;
+      background: linear-gradient(to right, transparent, #000, transparent);
+      opacity: 0.25;
+    }
+
+    /* Noise Texture */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Light Sweep */
+    .sweep::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.6), transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 1.2s ease;
+    }
+
+    .card:hover.sweep::before {
+      transform: translateX(100%);
+    }
+
+    /* Mouse Glow */
+    .glow {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0,0,0,0.12), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .glow:hover::after { opacity: 1; }
+
+  </style>
+</head>
+<body>
+
+  <div class="loader"><span>Loading</span></div>
+
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <!-- Side GIFs -->
+  <div class="side-gif left">
+    <div class="tenor-gif-embed" data-postid="5611876409941731049" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+  </div>
+
+  <div class="side-gif right">
+    <div class="tenor-gif-embed" data-postid="2981903896250867287" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+  </div>
+
+  <div class="page">
+    <div class="container">
+
+      <!-- Top GIF -->
+      <div class="gif-top">
+        <div class="tenor-gif-embed" data-postid="26371807" data-share-method="host" data-aspect-ratio="3.855" data-width="100%"></div>
+      </div>
+
+      <header>
+        <h1>Alif's Information</h1>
+        <p>Personal Profile</p>
+      </header>
+
+      <section class="grid parallax">
+
+<!-- Existing cards remain -->
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Daily Routine</h2><div class="info"><div>Wake Up Time: Morning</div><div>School Preparation: Regular</div><div>School Attendance: Daily</div><div>Study Time: Afternoon</div><div>Gaming Time: Evening</div><div>YouTube Watching: Night</div><div>Homework Habit: Consistent</div><div>Free Time Usage: Gaming And Relaxing</div><div>Sleep Time: Night</div><div>Routine Discipline: Balanced</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Personality Traits</h2><div class="info"><div>Nature: Calm</div><div>Behavior: Friendly</div><div>Social Skills: Improving</div><div>Curiosity Level: High</div><div>Learning Attitude: Positive</div><div>Creativity Level: High</div><div>Patience Level: Medium</div><div>Focus Ability: Good</div><div>Confidence Level: Growing</div><div>Mindset: Curious</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Gaming Skills</h2><div class="info"><div>Minecraft Building Skill: Good</div><div>Minecraft Survival Skill: Good</div><div>Redstone Knowledge: Basic</div><div>PvP Skill: Medium</div><div>Roblox Strategy Skill: Medium</div><div>Team Play: Good</div><div>Solo Play: Comfortable</div><div>Learning New Games: Fast</div><div>Adaptability: High</div><div>Game Sense: Improving</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Technology Interest</h2><div class="info"><div>Device Usage: Daily</div><div>Internet Knowledge: Moderate</div><div>Game Installation: Self Managed</div><div>Launcher Setup: Known</div><div>Settings Customization: Preferred</div><div>Online Safety Awareness: Basic</div><div>Software Curiosity: Growing</div><div>Website Interest: High</div><div>UI Design Interest: Emerging</div><div>Future Tech Learning: Interested</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Goals And Dreams</h2><div class="info"><div>Short Term Goal: Improve Skills</div><div>Education Goal: Complete School</div><div>Gaming Goal: Become Better Player</div><div>YouTube Dream: Possible Future</div><div>Creative Goal: Build Worlds</div><div>Learning Goal: Technology</div><div>Self Improvement: Important</div><div>Discipline Goal: Stronger Routine</div><div>Future Career: Undecided</div><div>Dream Mindset: Positive</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Online Presence</h2><div class="info"><div>Main Platform: YouTube</div><div>Gaming Platforms: Minecraft, Roblox</div><div>Online Activity: Regular</div><div>Community Interaction: Moderate</div><div>Commenting Habit: Sometimes</div><div>Content Exploration: Daily</div><div>Account Management: Self</div><div>Password Awareness: Basic</div><div>Online Friends: Yes</div><div>Digital Footprint: Growing</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Favorites Collection</h2><div class="info"><div>Favorite Game Genre: Sandbox</div><div>Favorite Game Mode: Survival</div><div>Favorite Time To Play: Evening</div><div>Favorite Content Type: Gaming</div><div>Favorite YouTube Style: Entertaining</div><div>Favorite Visual Style: Clean</div><div>Favorite Color Theme: White</div><div>Favorite Device Activity: Gaming</div><div>Favorite Online Place: Game Servers</div><div>Favorite Mood: Relaxed</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Fun Facts</h2><div class="info"><div>Enjoys Exploring New Worlds</div><div>Likes Multiplayer Games</div><div>Interested In Servers</div><div>Enjoys Watching Shorts</div><div>Likes Clean Designs</div><div>Prefers Smooth Gameplay</div><div>Enjoys Learning Through Play</div><div>Curious About Technology</div><div>Likes Friendly Communities</div><div>Enjoys Customization</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Mindset And Values</h2><div class="info"><div>Value: Learning</div><div>Value: Creativity</div><div>Value: Family</div><div>Value: Fun</div><div>Mindset: Growth</div><div>Attitude: Positive</div><div>Respect Level: Good</div><div>Responsibility: Growing</div><div>Honesty: Important</div><div>Balance: Preferred</div></div></div>
+
+<div class="card reveal cinematic frosted sweep glow"><h2>Future Updates</h2><div class="info"><div>More Information Will Be Added</div><div>Profile Expansion Planned</div><div>Skills Will Improve</div><div>Content Will Grow</div><div>Design Will Evolve</div><div>More Sections Coming</div><div>Details Will Expand</div><div>Experience Will Increase</div><div>Journey Is Ongoing</div><div>Stay Tuned</div></div></div>
+
+</section>
+
+      <!-- Bottom GIF -->
+      <div class="gif-bottom">
+        <div class="tenor-gif-embed" data-postid="19862800" data-share-method="host" data-aspect-ratio="3" data-width="100%"></div>
+      </div>
+
+      <footer>More Info's Soon :)</footer>
+
+    </div>
+  </div>
+
+  <script async src="https://tenor.com/embed.js"></script>
+
+
+  <script>
+    /* Scroll Reveal */
+    const reveals = document.querySelectorAll('.reveal');
+    window.addEventListener('scroll', () => {
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    });
+
+    /* Parallax Effect */
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.parallax').forEach(p => {
+        p.style.transform = `translateY(${window.scrollY * 0.08}px)`;
+      });
+    });
+
+    /* Mouse Glow */
+    document.querySelectorAll('.glow').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const glow = card.querySelector('::after');
+        card.style.setProperty('--x', e.offsetX + 'px');
+        card.style.setProperty('--y', e.offsetY + 'px');
+      });
+    });
+  </script>
+</body>
+</html>
