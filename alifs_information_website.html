@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alif's Information</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================
+       Root & Reset
+    ===================== */
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #555555;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --shadow-light: 0 8px 20px rgba(0, 0, 0, 0.06);
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* =====================
+       Loading Screen
+    ===================== */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 0.6s ease forwards;
+      animation-delay: 2s;
+    }
+
+    .loader-inner {
+      text-align: center;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .loader-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 3px solid #eaeaea;
+      border-top: 3px solid #000000;
+      margin: 0 auto 18px;
+      animation: spin 1.2s linear infinite;
+    }
+
+    .loader-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* =====================
+       Entrance Animation
+    ===================== */
+    .page {
+      animation: slideUp 1.2s ease forwards;
+      opacity: 0;
+      animation-delay: 2s;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(80px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* =====================
+       Decorative Background
+    ===================== */
+    .bg-orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(0,0,0,0.06), transparent 60%);
+      filter: blur(40px);
+      z-index: -1;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    .orb-1 { top: -120px; left: -120px; }
+    .orb-2 { bottom: -140px; right: -140px; animation-delay: 4s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(40px, 60px); }
+    }
+
+    /* =====================
+       Layout
+    ===================== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    header p {
+      font-size: 16px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* =====================
+       Card Grid
+    ===================== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-light);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(0,0,0,0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .info {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .info div {
+      margin-bottom: 6px;
+    }
+
+    /* =====================
+       Links
+    ===================== */
+    a {
+      color: blue;
+      text-decoration: none;
+      position: relative;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: blue;
+      transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    /* =====================
+       Footer
+    ===================== */
+    footer {
+      margin-top: 100px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* =====================
+       Subtle Extras (Premium Details)
+    ===================== */
+    .divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #000, transparent);
+      margin: 26px auto 0;
+      opacity: 0.2;
+    }
+
+    .glass {
+      backdrop-filter: blur(6px);
+    }
+
+    .soft-glow {
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.03);
+    }
+
+    .rounded {
+      border-radius: 999px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-circle"></div>
+      <div class="loader-text">Loading</div>
+    </div>
+  </div>
+
+  <!-- Decorative Background Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Page Content -->
+  <div class="page">
+    <div class="container">
+
+      <header>
+        <h1>Alif's Information</h1>
+        <p>Personal Profile</p>
+        <div class="divider"></div>
+      </header>
+
+      <section class="grid">
+
+        <div class="card glass soft-glow">
+          <h2>Basic Information</h2>
+          <div class="info">
+            <div>Name: Shah Mohammed Alif</div>
+            <div>Gender: Male</div>
+            <div>Age: 13</div>
+            <div>Country: Bangladesh</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Family</h2>
+          <div class="info">
+            <div>Father Name: Mohammed Alauddin</div>
+            <div>Mother Name: Umme Kulsum Sharmin</div>
+            <div>Siblings: 3 Siblings (2 Brothers And 1 Sister)</div>
+            <div>Brother Name: Shah Mohammed Afnan</div>
+            <div>Sister Name: Jannatun Tazri</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Education</h2>
+          <div class="info">
+            <div>Class: 7 (Dagunbhuiyan Academy)</div>
+            <div>Primary School: Chomibhuiyar Hat Government School</div>
+            <div>High School: Dagunbhuiyan Academy</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Location</h2>
+          <div class="info">
+            <div>District: Feni, Dagunbhuiyan</div>
+            <div>Village: South Karimpur</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Hobbies And Games</h2>
+          <div class="info">
+            <div>Hobby: Playing Games</div>
+            <div>Favourite Games: Minecraft, Roblox</div>
+            <div>Favourite Roblox Game: Grow A Garden (GAG)</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Minecraft</h2>
+          <div class="info">
+            <div>Minecraft Username: Alifthepro123 (Cracked)</div>
+            <div>Favourite Launcher: Mojo Launcher</div>
+            <div>Favourite Server: Royal SMP (Cracked)</div>
+            <div>Server IP: play.royallsmp.fun</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Roblox</h2>
+          <div class="info">
+            <div>Roblox Username: Shark24883</div>
+            <div>Roblox Username (Brother Afnan): Afnanhagla</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>YouTube Preferences</h2>
+          <div class="info">
+            <div>Favourite Video Sharing Platform: YouTube</div>
+            <div>Favourite YouTuber (Roblox): Foltyn, KreekCraft, Caylus, Carry Minati</div>
+            <div>Favourite YouTuber (Minecraft): ProBoiz95, Carry Depie</div>
+          </div>
+        </div>
+
+        <div class="card glass soft-glow">
+          <h2>Channel Links</h2>
+          <div class="info">
+            <div>Carry Minati: <a href="http://www.youtube.com/@carrydepieshorts5374" target="_blank">YouTube Channel</a></div>
+            <div>KreekCraft: <a href="http://www.youtube.com/@KreekCraft" target="_blank">YouTube Channel</a></div>
+            <div>Foltyn: <a href="http://www.youtube.com/@FoltynFamily" target="_blank">YouTube Channel</a></div>
+            <div>Caylus: <a href="http://www.youtube.com/@Caylus" target="_blank">YouTube Channel</a></div>
+            <div>Carry Depie: <a href="http://www.youtube.com/@CarryDepie" target="_blank">YouTube Channel</a></div>
+            <div>ProBoiz95: <a href="http://www.youtube.com/@ProBoiz95" target="_blank">YouTube Channel</a></div>
+          </div>
+        </div>
+
+      </section>
+
+      <footer>
+        More Info's Soon :)
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>
